@@ -13,7 +13,6 @@ public class CheckoutTest {
 
   @Before
   public void setUp() {
-
     Map<String, Discount> discounts = new HashMap<String, Discount>();
     discounts.put("A", new Discount(3, 20));
     discounts.put("B", new Discount(2, 15));
