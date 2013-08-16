@@ -1,22 +1,26 @@
 public class Checkout {
 
   private int total = 0;
+  private int countA = 0;
 
   public void scan(String products) {
     String[] items = products.split("");
 
-    int countA = 0;
     for (String item : items) {
-      if (item.equals("A")) {
-        countA++;
-      }
-
       total += getItemPrice(item);
-
-      if (countA == 3) {
-        total -= 20;
-      }
+      total -= getDiscountPrice(item);
     }
+  }
+
+  private int getDiscountPrice(String item) {
+    if (item.equals("A")) {
+      countA++;
+    }
+
+    if (countA == 3) {
+      return 20;
+    }
+    return 0;
   }
 
   private int getItemPrice(String item) {
