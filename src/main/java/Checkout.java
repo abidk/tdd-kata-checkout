@@ -6,16 +6,21 @@ public class Checkout {
     String[] items = products.split("");
 
     for (String item : items) {
-      if (item.equals("A")) {
-        total += 50;
-      } else if (item.equals("B")) {
-        total += 30;
-      } else if (item.equals("C")) {
-        total += 20;
-      } else if (item.equals("D")) {
-        total += 15;
-      }
+      total += getItemPrice(item);
     }
+  }
+
+  private int getItemPrice(String item) {
+    if (item.equals("A")) {
+      return 50;
+    } else if (item.equals("B")) {
+      return 30;
+    } else if (item.equals("C")) {
+      return 20;
+    } else if (item.equals("D")) {
+      return 15;
+    }
+    return 0;
   }
 
   public int total() {
