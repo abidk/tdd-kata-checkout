@@ -32,15 +32,15 @@ public class Checkout {
   }
 
   private int getItemDiscount(String item, int count) {
-    int bundleDiscount = 0;
+    int itemDiscount = 0;
     for (int x = 0; x <= count; x++) {
       if (item.equals("A")) {
         if (x > 0 && x % 3 == 0) {
-          bundleDiscount += 20;
+          itemDiscount += 20;
         }
       }
     }
-    return bundleDiscount;
+    return itemDiscount;
   }
 
   private int getItemPrice(String item) {
