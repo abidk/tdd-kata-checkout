@@ -17,7 +17,7 @@ public class Checkout {
       countA++;
     }
 
-    if (countA == 3) {
+    if (countA > 0 && countA % 3 == 0) {
       return 20;
     }
     return 0;
