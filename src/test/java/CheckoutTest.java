@@ -94,4 +94,10 @@ public class CheckoutTest {
     checkout.scan("AAABBD");
     assertEquals(190, checkout.total());
   }
+  
+  @Test
+  public void totalShouldReturn190WhenScanningDABABA() {
+    checkout.scan("DABABA");
+    assertEquals(190, checkout.total());
+  }
 }
