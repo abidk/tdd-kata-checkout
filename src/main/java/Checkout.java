@@ -16,22 +16,22 @@ public class Checkout {
       itemCounter.put(item, ++itemCount);
     }
 
-    total -= applyDiscounts();
+    total -= getTotalDiscounts();
   }
 
-  private int applyDiscounts() {
+  private int getTotalDiscounts() {
     int totalDiscount = 0;
 
     for (Map.Entry<String, Integer> itemCount : itemCounter.entrySet()) {
       String item = itemCount.getKey();
       int count = itemCount.getValue();
-      totalDiscount += getDiscountPrice(item, count);
+      totalDiscount += getItemDiscount(item, count);
     }
 
     return totalDiscount;
   }
 
-  private int getDiscountPrice(String item, int count) {
+  private int getItemDiscount(String item, int count) {
     int bundleDiscount = 0;
     for (int x = 0; x <= count; x++) {
       if (item.equals("A")) {
