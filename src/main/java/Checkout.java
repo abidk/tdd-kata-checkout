@@ -5,8 +5,17 @@ public class Checkout {
   public void scan(String products) {
     String[] items = products.split("");
 
+    int countA = 0;
     for (String item : items) {
+      if (item.equals("A")) {
+        countA++;
+      }
+
       total += getItemPrice(item);
+
+      if (countA == 3) {
+        total -= 20;
+      }
     }
   }
 
