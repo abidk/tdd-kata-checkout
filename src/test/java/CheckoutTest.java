@@ -84,8 +84,8 @@ public class CheckoutTest {
   }
   
   @Test
-  public void totalShouldReturn180WhenScanningAAABB() {
+  public void totalShouldReturn175WhenScanningAAABB() {
     checkout.scan("AAABB");
-    assertEquals(180, checkout.total());
+    assertEquals(175, checkout.total());
   }
 }
