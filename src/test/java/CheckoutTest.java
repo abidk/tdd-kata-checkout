@@ -101,6 +101,21 @@ public class CheckoutTest {
     assertEquals(190, checkout.total());
   }
 
+  @Test
+  public void scanningIndividualItemShouldReturnCorrectTotal() {
+    assertEquals(0, checkout.total());
+    checkout.scan("A");
+    assertEquals(50, checkout.total());
+    checkout.scan("B");
+    assertEquals(80, checkout.total());
+    checkout.scan("A");
+    assertEquals(130, checkout.total());
+    checkout.scan("A");
+    assertEquals(160, checkout.total());
+    checkout.scan("B");
+    assertEquals(175, checkout.total());
+  }
+
   private void scanMultipleItems(String products) {
     String[] items = products.split("");
 

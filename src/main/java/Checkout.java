@@ -11,20 +11,20 @@ public class Checkout {
   }
 
   public int total() {
-    int total = 0;
+    return calculateFullPrice() - calculateDiscounts();
+  }
 
+  private int calculateFullPrice() {
+    int totalPrice = 0;
     for (Map.Entry<String, Integer> itemCount : items.entrySet()) {
       String item = itemCount.getKey();
       int count = itemCount.getValue();
 
       for (int x = 0; x < count; x++) {
-        total += getItemPrice(item);
+        totalPrice += getItemPrice(item);
       }
     }
-
-    total -= calculateDiscounts();
-
-    return total;
+    return totalPrice;
   }
 
   private int calculateDiscounts() {
