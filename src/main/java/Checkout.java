@@ -6,9 +6,7 @@ public class Checkout {
   private Map<String, Integer> items = new HashMap<String, Integer>();
   private DiscountCalculator discountCalculator;
 
-  public Checkout(DiscountCalculator discountCalculator) {
-    this.discountCalculator = discountCalculator;
-
+  public Checkout() {
   }
 
   public void scan(String item) {
@@ -17,7 +15,12 @@ public class Checkout {
   }
 
   public int total() {
-    return calculateFullPrice() - discountCalculator.calculate(items);
+    int total = calculateFullPrice();
+
+    if (discountCalculator != null) {
+      total -= discountCalculator.calculate(items);
+    }
+    return total;
   }
 
   private int calculateFullPrice() {
@@ -44,6 +47,10 @@ public class Checkout {
       return 15;
     }
     return 0;
+  }
+
+  public void setDiscountCalculator(DiscountCalculator discountCalculator) {
+    this.discountCalculator = discountCalculator;
   }
 
 }

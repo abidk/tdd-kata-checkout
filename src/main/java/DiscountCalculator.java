@@ -2,7 +2,10 @@ import java.util.Map;
 
 public class DiscountCalculator implements Calculator {
 
-  public DiscountCalculator() {
+  private Map<String, Discount> discounts;
+
+  public DiscountCalculator(Map<String, Discount> discounts) {
+    this.discounts = discounts;
   }
 
   public int calculate(Map<String, Integer> items) {
@@ -20,14 +23,13 @@ public class DiscountCalculator implements Calculator {
 
   private int getItemDiscount(String item, int count) {
     int itemDiscount = 0;
-    for (int x = 0; x <= count; x++) {
-      if (item.equals("A")) {
-        if (x > 0 && x % 3 == 0) {
-          itemDiscount += 20;
-        }
-      } else if (item.equals("B")) {
-        if (x > 0 && x % 2 == 0) {
-          itemDiscount += 15;
+
+    Discount discount = discounts.get(item);
+    if (discount != null) {
+
+      for (int x = 0; x <= count; x++) {
+        if (x > 0 && x % discount.getMaxQuantity() == 0) {
+          itemDiscount += discount.getDiscount();
         }
       }
     }

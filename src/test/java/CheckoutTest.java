@@ -1,15 +1,26 @@
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class CheckoutTest {
 
   private Checkout checkout;
+  private DiscountCalculator discountCalculator;
 
   @Before
   public void setUp() {
-    checkout = new Checkout(new DiscountCalculator());
+
+    Map<String, Discount> discounts = new HashMap<String, Discount>();
+    discounts.put("A", new Discount(3, 20));
+    discounts.put("B", new Discount(2, 15));
+    discountCalculator = new DiscountCalculator(discounts);
+
+    checkout = new Checkout();
+    checkout.setDiscountCalculator(discountCalculator);
   }
 
   @Test
