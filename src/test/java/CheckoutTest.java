@@ -18,20 +18,26 @@ public class CheckoutTest {
   }
 
   @Test
-  public void totalShouldReturn50WhenAIsScanned() {
+  public void totalShouldReturn50WhenScannedA() {
     checkout.scan("A");
     assertEquals(50, checkout.total());
   }
   
   @Test
-  public void totalShouldReturn30WhenBIsScanned() {
+  public void totalShouldReturn30WhenScanningB() {
     checkout.scan("B");
     assertEquals(30, checkout.total());
   }
   
   @Test
-  public void totalShouldReturn80WhenABAreScanned() {
+  public void totalShouldReturn80WhenScanningAB() {
     checkout.scan("AB");
     assertEquals(80, checkout.total());
+  }
+  
+  @Test
+  public void totalShouldReturn115WhenScanningABCD() {
+    checkout.scan("ABCD");
+    assertEquals(115, checkout.total());
   }
 }
