@@ -28,4 +28,10 @@ public class CheckoutTest {
     checkout.scan("B");
     assertEquals(30, checkout.total());
   }
+  
+  @Test
+  public void totalShouldReturn80WhenABAreScanned() {
+    checkout.scan("AB");
+    assertEquals(80, checkout.total());
+  }
 }
