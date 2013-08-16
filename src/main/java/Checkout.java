@@ -25,6 +25,7 @@ public class Checkout {
     for (Map.Entry<String, Integer> itemCount : itemCounter.entrySet()) {
       String item = itemCount.getKey();
       int count = itemCount.getValue();
+      
       totalDiscount += getItemDiscount(item, count);
     }
 
@@ -37,6 +38,10 @@ public class Checkout {
       if (item.equals("A")) {
         if (x > 0 && x % 3 == 0) {
           itemDiscount += 20;
+        }
+      } else if (item.equals("B")) {
+        if (x > 0 && x % 2 == 0) {
+          itemDiscount += 15;
         }
       }
     }
