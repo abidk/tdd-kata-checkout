@@ -26,7 +26,7 @@ public class DiscountCalculator implements Calculator {
 
     Discount discount = discounts.get(item);
     if (discount != null) {
-      itemDiscount += discount.getDiscount() * (quantity / discount.getDiscountQuantity());
+      itemDiscount += discount.getDiscount() * (quantity / discount.getThreshold());
     }
     return itemDiscount;
   }

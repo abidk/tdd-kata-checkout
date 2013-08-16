@@ -1,19 +1,19 @@
 public class Discount {
 
-  private int maxQuantity;
+  private int threshold;
   private int discount;
 
   public Discount(int maxQuantity, int discount) {
-    this.maxQuantity = maxQuantity;
+    this.threshold = maxQuantity;
     this.discount = discount;
   }
 
-  public int getDiscountQuantity() {
-    return maxQuantity;
+  public int getThreshold() {
+    return threshold;
   }
 
-  public void setMaxQuantity(int maxQuantity) {
-    this.maxQuantity = maxQuantity;
+  public void setThreshold(int threshold) {
+    this.threshold = threshold;
   }
 
   public int getDiscount() {
