@@ -10,6 +10,10 @@ public class Checkout {
         total += 50;
       } else if (item.equals("B")) {
         total += 30;
+      } else if (item.equals("C")) {
+        total += 20;
+      } else if (item.equals("D")) {
+        total += 15;
       }
     }
   }
