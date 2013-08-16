@@ -1,7 +1,12 @@
 public class Checkout {
 
-  public int total() {
-    return 0;
+  private int total = 0;
+
+  public void scan(String item) {
+    total = 50;
   }
 
+  public int total() {
+    return total;
+  }
 }

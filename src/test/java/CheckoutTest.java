@@ -13,7 +13,13 @@ public class CheckoutTest {
   }
 
   @Test
-  public void totalShouldReturnZeroWhenThereAreNoItems() {
+  public void totalShouldReturnZeroWhenThereAreNoItemsScanned() {
     assertEquals(0, checkout.total());
+  }
+
+  @Test
+  public void totalShouldReturn50WhenAIsScanned() {
+    checkout.scan("A");
+    assertEquals(50, checkout.total());
   }
 }
