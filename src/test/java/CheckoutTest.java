@@ -22,4 +22,10 @@ public class CheckoutTest {
     checkout.scan("A");
     assertEquals(50, checkout.total());
   }
+  
+  @Test
+  public void totalShouldReturn30WhenBIsScanned() {
+    checkout.scan("B");
+    assertEquals(30, checkout.total());
+  }
 }

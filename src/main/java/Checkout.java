@@ -3,7 +3,11 @@ public class Checkout {
   private int total = 0;
 
   public void scan(String item) {
-    total = 50;
+    if (item.equals("A")) {
+      total = 50;
+    } else if (item.equals("B")) {
+      total = 30;
+    }
   }
 
   public int total() {
