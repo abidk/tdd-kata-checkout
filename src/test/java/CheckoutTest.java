@@ -46,4 +46,10 @@ public class CheckoutTest {
     checkout.scan("AA");
     assertEquals(100, checkout.total());
   }
+  
+  @Test
+  public void totalShouldReturn130WhenScanningAAA() {
+    checkout.scan("AAA");
+    assertEquals(130, checkout.total());
+  }
 }
