@@ -15,10 +15,10 @@ public class Checkout {
   private int getDiscountPrice(String item) {
     if (item.equals("A")) {
       countA++;
-    }
-
-    if (countA > 0 && countA % 3 == 0) {
-      return 20;
+    
+      if (countA > 0 && countA % 3 == 0) {
+        return 20;
+      }
     }
     return 0;
   }
