@@ -8,7 +8,7 @@ public class Discount {
     this.discount = discount;
   }
 
-  public int getMaxQuantity() {
+  public int getDiscountQuantity() {
     return maxQuantity;
   }
 

@@ -10,6 +10,7 @@ public class CheckoutTest {
 
   private Checkout checkout;
   private DiscountCalculator discountCalculator;
+  private ProductCalculator productCalculator;
 
   @Before
   public void setUp() {
@@ -18,7 +19,14 @@ public class CheckoutTest {
     discounts.put("B", new Discount(2, 15));
     discountCalculator = new DiscountCalculator(discounts);
 
-    checkout = new Checkout(new ItemCalculator());
+    Map<String, Product> products = new HashMap<String, Product>();
+    products.put("A", new Product(50));
+    products.put("B", new Product(30));
+    products.put("C", new Product(20));
+    products.put("D", new Product(15));
+    productCalculator = new ProductCalculator(products);
+
+    checkout = new Checkout(productCalculator);
     checkout.setDiscountCalculator(discountCalculator);
   }
 
@@ -130,6 +138,9 @@ public class CheckoutTest {
     String[] items = products.split("");
 
     for (String item : items) {
+      if (item.equals("")) {
+        continue;
+      }
       checkout.scan(item);
     }
   }

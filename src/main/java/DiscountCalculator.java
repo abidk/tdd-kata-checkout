@@ -21,17 +21,12 @@ public class DiscountCalculator implements Calculator {
     return totalDiscount;
   }
 
-  private int getItemDiscount(String item, int count) {
+  private int getItemDiscount(String item, int quantity) {
     int itemDiscount = 0;
 
     Discount discount = discounts.get(item);
     if (discount != null) {
-
-      for (int x = 0; x <= count; x++) {
-        if (x > 0 && x % discount.getMaxQuantity() == 0) {
-          itemDiscount += discount.getDiscount();
-        }
-      }
+      itemDiscount += discount.getDiscount() * (quantity / discount.getDiscountQuantity());
     }
     return itemDiscount;
   }
