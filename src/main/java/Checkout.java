@@ -4,6 +4,12 @@ import java.util.Map;
 public class Checkout {
 
   private Map<String, Integer> items = new HashMap<String, Integer>();
+  private DiscountCalculator discountCalculator;
+
+  public Checkout(DiscountCalculator discountCalculator) {
+    this.discountCalculator = discountCalculator;
+
+  }
 
   public void scan(String item) {
     int itemCount = items.get(item) != null ? items.get(item) : 0;
@@ -11,7 +17,7 @@ public class Checkout {
   }
 
   public int total() {
-    return calculateFullPrice() - calculateDiscounts();
+    return calculateFullPrice() - discountCalculator.calculate(items);
   }
 
   private int calculateFullPrice() {
@@ -25,35 +31,6 @@ public class Checkout {
       }
     }
     return totalPrice;
-  }
-
-  private int calculateDiscounts() {
-    int totalDiscount = 0;
-
-    for (Map.Entry<String, Integer> itemCount : items.entrySet()) {
-      String item = itemCount.getKey();
-      int count = itemCount.getValue();
-
-      totalDiscount += getItemDiscount(item, count);
-    }
-
-    return totalDiscount;
-  }
-
-  private int getItemDiscount(String item, int count) {
-    int itemDiscount = 0;
-    for (int x = 0; x <= count; x++) {
-      if (item.equals("A")) {
-        if (x > 0 && x % 3 == 0) {
-          itemDiscount += 20;
-        }
-      } else if (item.equals("B")) {
-        if (x > 0 && x % 2 == 0) {
-          itemDiscount += 15;
-        }
-      }
-    }
-    return itemDiscount;
   }
 
   private int getItemPrice(String item) {

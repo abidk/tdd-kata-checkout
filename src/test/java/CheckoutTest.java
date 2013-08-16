@@ -9,7 +9,7 @@ public class CheckoutTest {
 
   @Before
   public void setUp() {
-    checkout = new Checkout();
+    checkout = new Checkout(new DiscountCalculator());
   }
 
   @Test
