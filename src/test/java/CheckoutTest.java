@@ -31,73 +31,81 @@ public class CheckoutTest {
 
   @Test
   public void totalShouldReturn80WhenScanningAB() {
-    checkout.scan("AB");
+    scanMultipleItems("AB");
     assertEquals(80, checkout.total());
   }
 
   @Test
   public void totalShouldReturn115WhenScanningABCD() {
-    checkout.scan("ABCD");
+    scanMultipleItems("ABCD");
     assertEquals(115, checkout.total());
   }
 
   @Test
   public void totalShouldReturn100WhenScanningAA() {
-    checkout.scan("AA");
+    scanMultipleItems("AA");
     assertEquals(100, checkout.total());
   }
 
   @Test
   public void totalShouldReturn130WhenScanningAAA() {
-    checkout.scan("AAA");
+    scanMultipleItems("AAA");
     assertEquals(130, checkout.total());
   }
 
   @Test
   public void totalShouldReturn180WhenScanningAAAA() {
-    checkout.scan("AAAA");
+    scanMultipleItems("AAAA");
     assertEquals(180, checkout.total());
   }
 
   @Test
   public void totalShouldReturn230WhenScanningAAAAA() {
-    checkout.scan("AAAAA");
+    scanMultipleItems("AAAAA");
     assertEquals(230, checkout.total());
   }
 
   @Test
   public void totalShouldReturn260WhenScanningAAAAAA() {
-    checkout.scan("AAAAAA");
+    scanMultipleItems("AAAAAA");
     assertEquals(260, checkout.total());
   }
 
   @Test
   public void totalShouldReturn160WhenScanningAAAB() {
-    checkout.scan("AAAB");
+    scanMultipleItems("AAAB");
     assertEquals(160, checkout.total());
   }
-  
+
   @Test
   public void totalShouldReturn45WhenScanningBB() {
-    checkout.scan("BB");
+    scanMultipleItems("BB");
     assertEquals(45, checkout.total());
   }
-  
+
   @Test
   public void totalShouldReturn175WhenScanningAAABB() {
-    checkout.scan("AAABB");
+    scanMultipleItems("AAABB");
     assertEquals(175, checkout.total());
   }
-  
+
   @Test
   public void totalShouldReturn190WhenScanningAAABBD() {
-    checkout.scan("AAABBD");
+    scanMultipleItems("AAABBD");
     assertEquals(190, checkout.total());
   }
-  
+
   @Test
   public void totalShouldReturn190WhenScanningDABABA() {
-    checkout.scan("DABABA");
+    scanMultipleItems("DABABA");
     assertEquals(190, checkout.total());
+  }
+
+  private void scanMultipleItems(String products) {
+    String[] items = products.split("");
+
+    for (String item : items) {
+      checkout.scan(item);
+    }
   }
 }

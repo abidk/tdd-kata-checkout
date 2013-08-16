@@ -3,29 +3,37 @@ import java.util.Map;
 
 public class Checkout {
 
-  private Map<String, Integer> itemCounter = new HashMap<String, Integer>();
-  private int total = 0;
+  private Map<String, Integer> items = new HashMap<String, Integer>();
 
-  public void scan(String products) {
-    String[] items = products.split("");
-
-    for (String item : items) {
-      total += getItemPrice(item);
-
-      int itemCount = itemCounter.get(item) != null ? itemCounter.get(item) : 0;
-      itemCounter.put(item, ++itemCount);
-    }
-
-    total -= getTotalDiscounts();
+  public void scan(String item) {
+    int itemCount = items.get(item) != null ? items.get(item) : 0;
+    items.put(item, itemCount + 1);
   }
 
-  private int getTotalDiscounts() {
-    int totalDiscount = 0;
+  public int total() {
+    int total = 0;
 
-    for (Map.Entry<String, Integer> itemCount : itemCounter.entrySet()) {
+    for (Map.Entry<String, Integer> itemCount : items.entrySet()) {
       String item = itemCount.getKey();
       int count = itemCount.getValue();
-      
+
+      for (int x = 0; x < count; x++) {
+        total += getItemPrice(item);
+      }
+    }
+
+    total -= calculateDiscounts();
+
+    return total;
+  }
+
+  private int calculateDiscounts() {
+    int totalDiscount = 0;
+
+    for (Map.Entry<String, Integer> itemCount : items.entrySet()) {
+      String item = itemCount.getKey();
+      int count = itemCount.getValue();
+
       totalDiscount += getItemDiscount(item, count);
     }
 
@@ -61,7 +69,4 @@ public class Checkout {
     return 0;
   }
 
-  public int total() {
-    return total;
-  }
 }
