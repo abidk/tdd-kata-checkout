@@ -5,8 +5,10 @@ public class Checkout {
 
   private Map<String, Integer> items = new HashMap<String, Integer>();
   private DiscountCalculator discountCalculator;
+  private ItemCalculator itemCalculator;
 
-  public Checkout() {
+  public Checkout(ItemCalculator itemCalculator) {
+    this.itemCalculator = itemCalculator;
   }
 
   public void scan(String item) {
@@ -15,38 +17,12 @@ public class Checkout {
   }
 
   public int total() {
-    int total = calculateFullPrice();
+    int total = itemCalculator.calculate(items);
 
     if (discountCalculator != null) {
       total -= discountCalculator.calculate(items);
     }
     return total;
-  }
-
-  private int calculateFullPrice() {
-    int totalPrice = 0;
-    for (Map.Entry<String, Integer> itemCount : items.entrySet()) {
-      String item = itemCount.getKey();
-      int count = itemCount.getValue();
-
-      for (int x = 0; x < count; x++) {
-        totalPrice += getItemPrice(item);
-      }
-    }
-    return totalPrice;
-  }
-
-  private int getItemPrice(String item) {
-    if (item.equals("A")) {
-      return 50;
-    } else if (item.equals("B")) {
-      return 30;
-    } else if (item.equals("C")) {
-      return 20;
-    } else if (item.equals("D")) {
-      return 15;
-    }
-    return 0;
   }
 
   public void setDiscountCalculator(DiscountCalculator discountCalculator) {

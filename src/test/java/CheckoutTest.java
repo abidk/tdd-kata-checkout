@@ -18,7 +18,7 @@ public class CheckoutTest {
     discounts.put("B", new Discount(2, 15));
     discountCalculator = new DiscountCalculator(discounts);
 
-    checkout = new Checkout();
+    checkout = new Checkout(new ItemCalculator());
     checkout.setDiscountCalculator(discountCalculator);
   }
 
