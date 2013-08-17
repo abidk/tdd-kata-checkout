@@ -1,10 +1,10 @@
 import java.util.Map;
 
-public class ProductCalculator implements Calculator {
+public class ProductPriceCalculator implements Calculator {
 
   private Map<String, Product> products;
 
-  public ProductCalculator(Map<String, Product> products) {
+  public ProductPriceCalculator(Map<String, Product> products) {
     this.products = products;
   }
 

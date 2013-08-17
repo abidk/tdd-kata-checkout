@@ -3,8 +3,8 @@ public class Discount {
   private int threshold;
   private int discount;
 
-  public Discount(int maxQuantity, int discount) {
-    this.threshold = maxQuantity;
+  public Discount(int threshold, int discount) {
+    this.threshold = threshold;
     this.discount = discount;
   }
 

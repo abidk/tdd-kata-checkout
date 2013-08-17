@@ -10,7 +10,7 @@ public class CheckoutTest {
 
   private Checkout checkout;
   private DiscountCalculator discountCalculator;
-  private ProductCalculator productCalculator;
+  private ProductPriceCalculator productPriceCalculator;
 
   @Before
   public void setUp() {
@@ -24,9 +24,9 @@ public class CheckoutTest {
     products.put("B", new Product(30));
     products.put("C", new Product(20));
     products.put("D", new Product(15));
-    productCalculator = new ProductCalculator(products);
+    productPriceCalculator = new ProductPriceCalculator(products);
 
-    checkout = new Checkout(productCalculator);
+    checkout = new Checkout(productPriceCalculator);
     checkout.setDiscountCalculator(discountCalculator);
   }
 

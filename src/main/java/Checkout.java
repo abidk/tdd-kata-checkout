@@ -3,12 +3,12 @@ import java.util.Map;
 
 public class Checkout {
 
-  private ProductCalculator productCalculator;
+  private ProductPriceCalculator productPriceCalculator;
   private DiscountCalculator discountCalculator;
   private Map<String, Integer> items = new HashMap<String, Integer>();
 
-  public Checkout(ProductCalculator productCalculator) {
-    this.productCalculator = productCalculator;
+  public Checkout(ProductPriceCalculator productPriceCalculator) {
+    this.productPriceCalculator = productPriceCalculator;
   }
 
   public void scan(String item) {
@@ -17,7 +17,7 @@ public class Checkout {
   }
 
   public int total() {
-    int total = productCalculator.calculate(items);
+    int total = productPriceCalculator.calculate(items);
 
     if (discountCalculator != null) {
       total -= discountCalculator.calculate(items);
