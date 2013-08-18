@@ -8,23 +8,23 @@ public class DiscountCalculator implements Calculator {
     this.discounts = discounts;
   }
 
-  public int calculate(Map<String, Integer> items) {
+  public int calculate(Map<Product, Integer> items) {
     int totalDiscount = 0;
 
-    for (Map.Entry<String, Integer> itemCount : items.entrySet()) {
-      String item = itemCount.getKey();
+    for (Map.Entry<Product, Integer> itemCount : items.entrySet()) {
+      Product product = itemCount.getKey();
       int count = itemCount.getValue();
 
-      totalDiscount += getItemDiscount(item, count);
+      totalDiscount += getItemDiscount(product, count);
     }
 
     return totalDiscount;
   }
 
-  private int getItemDiscount(String item, int quantity) {
+  private int getItemDiscount(Product product, int quantity) {
     int itemDiscount = 0;
 
-    Discount discount = discounts.get(item);
+    Discount discount = discounts.get(product.getBarcode());
     if (discount != null) {
       itemDiscount += discount.getDiscount() * (quantity / discount.getThreshold());
     }

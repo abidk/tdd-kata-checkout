@@ -3,30 +3,41 @@ import java.util.Map;
 
 public class Checkout {
 
-  private ProductPriceCalculator productPriceCalculator;
   private DiscountCalculator discountCalculator;
-  private Map<String, Integer> items = new HashMap<String, Integer>();
+  private ProductDao productDao;
 
-  public Checkout(ProductPriceCalculator productPriceCalculator) {
-    this.productPriceCalculator = productPriceCalculator;
+  private Map<Product, Integer> scannedItems = new HashMap<Product, Integer>();
+
+  public Checkout() {
   }
 
-  public void scan(String item) {
-    int itemCount = items.get(item) != null ? items.get(item) : 0;
-    items.put(item, itemCount + 1);
+  public void scan(String barcode) {
+    Product product = productDao.load(barcode);
+    int itemCount = scannedItems.get(product) != null ? scannedItems.get(product) : 0;
+    scannedItems.put(product, itemCount + 1);
   }
 
   public int total() {
-    int total = productPriceCalculator.calculate(items);
+    return calculatePrice(scannedItems) - discountCalculator.calculate(scannedItems);
+  }
 
-    if (discountCalculator != null) {
-      total -= discountCalculator.calculate(items);
+  private int calculatePrice(Map<Product, Integer> items) {
+    int totalPrice = 0;
+    for (Map.Entry<Product, Integer> itemCount : items.entrySet()) {
+      Product product = itemCount.getKey();
+      int count = itemCount.getValue();
+
+      totalPrice += (count * product.getPrice());
     }
-    return total;
+    return totalPrice;
   }
 
   public void setDiscountCalculator(DiscountCalculator discountCalculator) {
     this.discountCalculator = discountCalculator;
+  }
+
+  public void setProductDao(ProductDao productDao) {
+    this.productDao = productDao;
   }
 
 }

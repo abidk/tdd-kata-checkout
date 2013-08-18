@@ -1,6 +1,8 @@
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
@@ -9,25 +11,26 @@ import org.junit.Test;
 public class CheckoutTest {
 
   private Checkout checkout;
+  private ProductDaoImpl productDao;
   private DiscountCalculator discountCalculator;
-  private ProductPriceCalculator productPriceCalculator;
 
   @Before
   public void setUp() {
+    List<Product> products = new ArrayList<Product>();
+    products.add(new Product("A", 50));
+    products.add(new Product("B", 30));
+    products.add(new Product("C", 20));
+    products.add(new Product("D", 15));
+    productDao = new ProductDaoImpl(products);
+
     Map<String, Discount> discounts = new HashMap<String, Discount>();
     discounts.put("A", new Discount(3, 20));
     discounts.put("B", new Discount(2, 15));
     discountCalculator = new DiscountCalculator(discounts);
 
-    Map<String, Product> products = new HashMap<String, Product>();
-    products.put("A", new Product(50));
-    products.put("B", new Product(30));
-    products.put("C", new Product(20));
-    products.put("D", new Product(15));
-    productPriceCalculator = new ProductPriceCalculator(products);
-
-    checkout = new Checkout(productPriceCalculator);
+    checkout = new Checkout();
     checkout.setDiscountCalculator(discountCalculator);
+    checkout.setProductDao(productDao);
   }
 
   @Test
