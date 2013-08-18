@@ -13,7 +13,7 @@ public class CheckoutTest {
 
   private Checkout checkout;
   private ProductDaoImpl productDao;
-  private DiscountCalculator discountCalculator;
+  private DiscountCalculatorImpl discountCalculator;
 
   @Before
   public void setUp() {
@@ -27,7 +27,7 @@ public class CheckoutTest {
     Map<String, Discount> discounts = new HashMap<String, Discount>();
     discounts.put("A", new Discount(3, 20));
     discounts.put("B", new Discount(2, 15));
-    discountCalculator = new DiscountCalculator(discounts);
+    discountCalculator = new DiscountCalculatorImpl(discounts);
 
     checkout = new Checkout();
     checkout.setDiscountCalculator(discountCalculator);

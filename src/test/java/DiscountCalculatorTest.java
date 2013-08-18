@@ -11,7 +11,7 @@ public class DiscountCalculatorTest {
   public void shouldNotDiscountWhenScannedItemDoesNotExist() {
     Map<String, Discount> discounts = new HashMap<String, Discount>();
     discounts.put("A", new Discount(3, 20));
-    DiscountCalculator calculator = new DiscountCalculator(discounts);
+    DiscountCalculatorImpl calculator = new DiscountCalculatorImpl(discounts);
 
     Map<Product, Integer> scannedItems = new HashMap<Product, Integer>();
     scannedItems.put(new Product("B", 1), 7);
@@ -22,7 +22,7 @@ public class DiscountCalculatorTest {
   public void shouldReturnCorrectDiscountForItemSpecified() {
     Map<String, Discount> discounts = new HashMap<String, Discount>();
     discounts.put("A", new Discount(3, 20));
-    DiscountCalculator calculator = new DiscountCalculator(discounts);
+    DiscountCalculatorImpl calculator = new DiscountCalculatorImpl(discounts);
 
     Map<Product, Integer> scannedItems = new HashMap<Product, Integer>();
     scannedItems.put(new Product("A", 1), 2);
@@ -36,7 +36,7 @@ public class DiscountCalculatorTest {
   public void shouldReturnCorrectDiscountForMultipleDiscountedItems() {
     Map<String, Discount> discounts = new HashMap<String, Discount>();
     discounts.put("A", new Discount(3, 20));
-    DiscountCalculator calculator = new DiscountCalculator(discounts);
+    DiscountCalculatorImpl calculator = new DiscountCalculatorImpl(discounts);
 
     Map<Product, Integer> scannedItems = new HashMap<Product, Integer>();
     scannedItems.put(new Product("A", 1), 7);

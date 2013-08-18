@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Checkout {
 
-  private DiscountCalculator discountCalculator;
+  private DiscountCalculator calculator;
   private ProductDao productDao;
 
   private Map<Product, Integer> scannedItems = new HashMap<Product, Integer>();
@@ -22,7 +22,7 @@ public class Checkout {
   }
 
   public int total() {
-    return calculatePrice(scannedItems) - discountCalculator.calculate(scannedItems);
+    return calculatePrice(scannedItems) - calculator.calculate(scannedItems);
   }
 
   private int calculatePrice(Map<Product, Integer> items) {
@@ -36,8 +36,8 @@ public class Checkout {
     return totalPrice;
   }
 
-  public void setDiscountCalculator(DiscountCalculator discountCalculator) {
-    this.discountCalculator = discountCalculator;
+  public void setDiscountCalculator(DiscountCalculator calculator) {
+    this.calculator = calculator;
   }
 
   public void setProductDao(ProductDao productDao) {
