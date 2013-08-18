@@ -13,6 +13,10 @@ public class Checkout {
 
   public void scan(String barcode) {
     Product product = productDao.load(barcode);
+    if (product == null) {
+      throw new RuntimeException(String.format("Product for barcode '%s' not found.", barcode));
+    }
+
     int itemCount = scannedItems.get(product) != null ? scannedItems.get(product) : 0;
     scannedItems.put(product, itemCount + 1);
   }

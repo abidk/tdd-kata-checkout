@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,17 @@ public class CheckoutTest {
     checkout = new Checkout();
     checkout.setDiscountCalculator(discountCalculator);
     checkout.setProductDao(productDao);
+  }
+
+  @Test
+  public void scanShouldThrowErrorWhenAnItemDoesNotExist() {
+    try {
+      checkout.scan("ABC");
+    } catch (Exception e) {
+      assertEquals("Product for barcode 'ABC' not found.", e.getMessage());
+      return;
+    }
+    fail("Should have thrown exception!");
   }
 
   @Test
