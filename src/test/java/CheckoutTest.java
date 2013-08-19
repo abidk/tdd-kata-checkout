@@ -12,8 +12,6 @@ import org.junit.Test;
 public class CheckoutTest {
 
   private Checkout checkout;
-  private ProductDaoImpl productDao;
-  private DiscountCalculatorImpl discountCalculator;
 
   @Before
   public void setUp() {
@@ -22,12 +20,12 @@ public class CheckoutTest {
     products.add(new Product("B", 30));
     products.add(new Product("C", 20));
     products.add(new Product("D", 15));
-    productDao = new ProductDaoImpl(products);
+    ProductDaoImpl productDao = new ProductDaoImpl(products);
 
     Map<String, Discount> discounts = new HashMap<String, Discount>();
     discounts.put("A", new Discount(3, 20));
     discounts.put("B", new Discount(2, 15));
-    discountCalculator = new DiscountCalculatorImpl(discounts);
+    DiscountCalculatorImpl discountCalculator = new DiscountCalculatorImpl(discounts);
 
     checkout = new Checkout();
     checkout.setDiscountCalculator(discountCalculator);
